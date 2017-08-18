@@ -1,0 +1,26 @@
+# Boolean rules
+MASS$0 * = MASS$0
+MASS$1 * = MASS$1
+MASS$2 * = MASS$2
+Mih1$0 * = Mpk1$1 AND Clb2$0
+Mih1$1 * = Mpk1$1 AND (Clb2$1 OR Clb2$2) OR Mpk1$0 AND Clb2$0
+Mih1$2 * = Mpk1$0 AND (Clb2$1 OR Clb2$2)
+Mpk1$0 * = BUD$1
+Mpk1$1 * = BUD$0
+BUD$0 * = MASS$0
+BUD$1 * = MASS$1 OR MASS$2
+Clb2$0 * = MASS$0
+Clb2$1 * = (MASS$1 AND (Swe1$1 OR Swe1$2) AND (Mih1$0 OR Mih1$1)) OR ((MASS$1 OR MASS$2) AND Swe1$2 AND Mih1$0)
+Clb2$2 * = (MASS$1 AND (Swe1$0 OR Mih1$2)) OR (MASS$2 AND ((Swe1$0 OR Swe1$1) OR Mih1$1 OR Mih1$2))
+SBF$0 * = MASS$0 OR Clb2$1 OR Clb2$2
+SBF$1 * = (MASS$1 OR MASS$2) AND Clb2$0
+Swe1$0 * = SBF$0 OR SBF$1 AND ((Clb2$1 OR Clb2$2) AND Hsl1$1)
+Swe1$1 * = SBF$1 AND ((Clb2$1 OR Clb2$2) AND Hsl1$0 OR Hsl1$1 AND Clb2$0)
+Swe1$2 * = SBF$1 AND Hsl1$0 AND Clb2$0
+Hsl1$0 * = BUD$0
+Hsl1$1 * = BUD$1
+
+# result (format [SM sequence],attractorlist)
+[[['MASS$0']], ['MASS=0', 'Mih1=0', 'Mpk1=1', 'BUD=0', 'Clb2=0', 'SBF=0', 'Swe1=0', 'Hsl1=0']]
+[[['MASS$1'], ['Clb2$2', 'Mih1$2', 'Mih1$2 AND Swe1$0', 'SBF$0', 'Swe1$0']], ['MASS=1', 'Mih1=2', 'Mpk1=0', 'BUD=1', 'Clb2=2', 'SBF=0', 'Swe1=0', 'Hsl1=1']]
+[[['MASS$2'], ['Clb2$2', 'Mih1$2', 'Mih1$2 AND Swe1$0', 'SBF$0', 'Swe1$0']], ['MASS=2', 'Mih1=2', 'Mpk1=0', 'BUD=1', 'Clb2=2', 'SBF=0', 'Swe1=0', 'Hsl1=1']]

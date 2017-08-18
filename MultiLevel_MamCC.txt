@@ -1,0 +1,29 @@
+# Boolean rules: MultiLevel_MamCC.txt
+CycD$0 * = 1
+CycD$1 * = 0
+CycE$0 * = E2F$0 OR Rb$2
+CycE$1 * = E2F$1 AND (Rb$0 OR Rb$1)
+Rb$0 * = p27$0 AND CycE$1 OR CycE$0 AND (CycA$1 OR CycB$1) AND p27$0
+Rb$1 * = (CycD$1 AND CycE$0 AND CycA$0 AND CycB$0) OR (CycD$0 AND (p27$1 OR p27$2) AND CycE$1 AND CycA$1 AND CycB$1) OR (CycD$1 AND (CycE$1 OR CycA$1 OR CycB$1) AND (p27$1 OR p27$2))
+Rb$2 * = CycD$0 AND (CycE$0 AND (p27$1 OR p27$2 OR (CycA$0 AND CycB$0)) OR CycE$1 AND (CycA$0 AND CycB$0))
+CycA$0 * = (E2F$0 OR Rb$1 OR Rb$2) AND CycA$0 OR UbcH10$1 AND (Cdh1$1 OR Cdc20$1)
+CycA$1 * = ((E2F$1 AND Rb$0) OR CycA$1) AND (UbcH10$0 OR Cdh1$0 AND Cdc20$0)
+p27$0 * =  Skp2$1 AND (CycB$1 OR CycA$1 AND p27$0 OR CycE$1 AND (p27$0 OR p27$1 OR CycA$1))
+p27$1 * = CycD$1 AND ((CycB$0 AND (CycA$0 OR p27$1 OR p27$2) AND (CycE$0 OR (p27$2 AND CycA$0))) OR Skp2$0)
+p27$2 * = CycD$0 AND ((CycB$0 AND (CycA$0 OR p27$1 OR p27$2) AND (CycE$0 OR (p27$2 AND CycA$0))) OR Skp2$0)
+Cdc20$0 * = CycB$0
+Cdc20$1 * = CycB$1
+E2F$0 * = Rb$2 OR Cdc20$1 AND CycB$1 OR CycA$1 AND (p27$0 OR p27$1) AND (p27$0 OR p27$2 OR Skp2$1)
+E2F$1 * = (CycA$0 OR p27$1 AND Skp2$0 OR p27$2) AND (Rb$0 OR Rb$1) AND (Cdc20$0 OR CycB$0)
+UbcH10$0 * = Cdh1$1 AND (UbcH10$0 OR CycA$0 AND Cdc20$0 AND CycB$0)
+UbcH10$1 * = Cdh1$0 OR Cdh1$1 AND UbcH10$1 AND (CycA$1 OR Cdc20$1 OR CycB$1)
+Cdh1$0 * = CycA$1 AND (p27$1 OR p27$0) AND (p27$0 OR p27$2 OR Skp2$1) OR CycB$1 AND p27$0
+Cdh1$1 * = (CycA$0 OR (p27$1 AND Skp2$0) OR p27$2) AND (CycB$0 OR p27$1 OR p27$2)
+Skp2$0 * = Cdh1$1 AND Rb$2
+Skp2$1 * = Cdh1$0 OR Rb$1 OR Rb$0
+CycB$0 * = Cdh1$1 OR UbcH10$1 AND Cdc20$1
+CycB$1 * = Cdh1$0 AND (UbcH10$0 OR Cdc20$0)
+
+# possible problem in function of Skp2
+
+

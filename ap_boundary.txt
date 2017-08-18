@@ -1,0 +1,86 @@
+# Boolean rules - ap_boundary
+Hh_1$0 * = (Hh_2$1 OR Hh_2$0) AND Ptc_2$1 OR Ptc_2$0 AND Hh_2$0
+Hh_1$1 * = Hh_2$2 AND Ptc_2$1 OR Hh_2$1 AND Ptc_2$0
+Hh_1$2 * = Hh_2$2 AND Ptc_2$0
+En_1$0 * = CiA_1$0 OR CiA_1$1
+En_1$1 * = CiA_1$2
+CiA_1$0 * = Smo_1$0
+CiA_1$1 * = Smo_1$1
+CiA_1$2 * = Smo_1$2
+Dpp_1$0 * = CiA_1$0 AND En_1$1 OR En_1$0 AND CiA_1$0 AND CiR_1$1
+Dpp_1$1 * = En_1$1 AND (CiA_1$1 OR CiA_1$2) OR En_1$0 AND CiA_1$0 AND CiR_1$0
+Dpp_1$2 * = En_1$0 AND (CiA_1$1 OR CiA_1$2)
+CiR_1$0 * = Smo_1$1 OR Smo_1$2
+CiR_1$1 * = Smo_1$0
+Smo_1$0 * = Hh_1$0
+Smo_1$1 * = Ptc_1$1 AND Hh_1$1
+Smo_1$2 * = Ptc_1$0 AND (Hh_1$1 OR Hh_1$2) OR Ptc_1$1 AND Hh_1$2
+Ptc_1$0 * = CiA_1$0
+Ptc_1$1 * = CiA_1$1 OR CiA_1$2
+Hh_2$0 * = Hh_1$0 AND Hh_3$0 OR (Ptc_1$1 AND Hh_1$1 AND Ptc_3$0 AND Hh_3$0) OR (Ptc_3$1 AND Ptc_1$0 AND Hh_1$0 AND Hh_3$1) OR (Ptc_1$1 AND Ptc_3$1 AND (Hh_1$1 OR Hh_3$1))
+Hh_2$1 * = Ptc_1$1 AND Ptc_3$1 AND (Hh_3$2 AND (Hh_1$1 OR Hh_1$0) OR Hh_1$2 AND (Hh_3$1 OR Hh_3$0)) OR (Ptc_1$0 AND Ptc_3$0 AND (Hh_1$0 AND Hh_3$1 OR Hh_1$1 AND Hh_3$0)) OR (Ptc_1$1 AND Ptc_3$0 AND (Hh_1$2 AND Hh_3$0 OR (Hh_1$1 OR Hh_1$0) AND Hh_3$1)) OR (Ptc_1$0 AND Ptc_3$1 AND (Hh_3$2 AND Hh_1$0 OR (Hh_3$0 OR Hh_3$1) AND Hh_1$1))
+Hh_2$2 * = Ptc_1$0 AND Ptc_3$0 AND (Hh_1$2 OR Hh_3$2 OR (Hh_1$1 AND Hh_3$1)) OR (Ptc_1$1 AND Ptc_3$1 AND Hh_1$2 AND Hh_3$2) OR (Ptc_1$1 AND Ptc_3$0 AND (Hh_3$2 OR Hh_3$1 AND Hh_1$2)) OR (Ptc_1$0 AND Ptc_3$1 AND (Hh_1$2 OR Hh_1$1 AND Hh_3$2))
+En_2$0 * = CiA_2$0 OR CiA_2$1
+En_2$1 * = CiA_2$2
+CiA_2$0 * = Smo_2$0
+CiA_2$1 * = Smo_2$1
+CiA_2$2 * = Smo_2$2
+Dpp_2$0 * = CiA_2$0 AND En_2$1 OR En_2$0 AND CiA_2$0 AND CiR_2$1
+Dpp_2$1 * = En_2$1 AND (CiA_2$1 OR CiA_2$2) OR En_2$0 AND CiA_2$0 AND CiR_2$0
+Dpp_2$2 * = En_2$0 AND (CiA_2$1 OR CiA_2$2)
+CiR_2$0 * = Smo_2$1 OR Smo_2$2
+CiR_2$1 * = Smo_2$0
+Smo_2$0 * = Hh_2$0
+Smo_2$1 * = Ptc_2$1 AND Hh_2$1
+Smo_2$2 * = Ptc_2$0 AND (Hh_2$1 OR Hh_2$2) OR Ptc_2$1 AND Hh_2$2
+Ptc_2$0 * = CiA_2$0
+Ptc_2$1 * = CiA_2$1 OR CiA_2$2
+Hh_3$0 * = Hh_2$0 AND Hh_4$0 OR (Ptc_2$1 AND Hh_2$1 AND Ptc_4$0 AND Hh_4$0) OR (Ptc_4$1 AND Ptc_2$0 AND Hh_2$0 AND Hh_3$1) OR (Ptc_2$1 AND Ptc_4$1 AND (Hh_2$1 OR Hh_4$1))
+Hh_3$1 * = Ptc_2$1 AND Ptc_4$1 AND (Hh_4$2 AND (Hh_2$1 OR Hh_2$0) OR Hh_2$2 AND (Hh_4$1 OR Hh_4$0)) OR (Ptc_2$0 AND Ptc_4$0 AND (Hh_2$0 AND Hh_4$1 OR Hh_2$1 AND Hh_4$0)) OR (Ptc_2$1 AND Ptc_4$0 AND (Hh_2$2 AND Hh_4$0 OR (Hh_2$1 OR Hh_2$0) AND Hh_4$1)) OR (Ptc_2$0 AND Ptc_4$1 AND (Hh_4$2 AND Hh_2$0 OR (Hh_4$0 OR Hh_4$1) AND Hh_2$1))
+Hh_3$2 * = Ptc_2$0 AND Ptc_4$0 AND (Hh_2$2 OR Hh_4$2 OR (Hh_2$1 AND Hh_4$1)) OR (Ptc_2$1 AND Ptc_4$1 AND Hh_2$2 AND Hh_4$2) OR (Ptc_2$1 AND Ptc_4$0 AND (Hh_4$2 OR Hh_4$1 AND Hh_2$2)) OR (Ptc_2$0 AND Ptc_4$1 AND (Hh_2$2 OR Hh_2$1 AND Hh_4$2))
+En_3$0 * = CiA_3$0 OR CiA_3$1
+En_3$1 * = CiA_3$2
+CiA_3$0 * = Smo_3$0
+CiA_3$1 * = Smo_3$1
+CiA_3$2 * = Smo_3$2
+Dpp_3$0 * = CiA_3$0 AND En_3$1 OR En_3$0 AND CiA_3$0 AND CiR_3$1
+Dpp_3$1 * = En_3$1 AND (CiA_3$1 OR CiA_3$2) OR En_3$0 AND CiA_3$0 AND CiR_3$0
+Dpp_3$2 * = En_3$0 AND (CiA_3$1 OR CiA_3$2)
+CiR_3$0 * = Smo_3$1 OR Smo_3$2
+CiR_3$1 * = Smo_3$0
+Smo_3$0 * = Hh_3$0
+Smo_3$1 * = Ptc_3$1 AND Hh_3$1
+Smo_3$2 * = Ptc_3$0 AND (Hh_3$1 OR Hh_3$2) OR Ptc_3$1 AND Hh_3$2
+Ptc_3$0 * = CiA_3$0
+Ptc_3$1 * = CiA_3$1 OR CiA_3$2
+Hh_4$0 * = ((Hh_3$1 OR Hh_3$0) AND Ptc_3$1 OR Ptc_3$0 AND Hh_3$0) AND En_4$0
+Hh_4$1 * = (Hh_3$2 AND Ptc_3$1 OR Hh_3$1 AND Ptc_3$0) AND En_4$0
+Hh_4$2 * = En_4$0 AND Hh_3$2 AND Ptc_3$0 OR En_4$1
+En_4$0 * = 0
+En_4$1 * = 1
+CiA_4$0 * = Smo_4$0 OR En_4$1
+CiA_4$1 * = Smo_4$1 AND En_4$0
+CiA_4$2 * = Smo_4$2 AND En_4$0
+Dpp_4$0 * = CiA_4$0 AND En_4$1 OR En_4$0 AND CiA_4$0 AND CiR_4$1
+Dpp_4$1 * = En_4$1 AND (CiA_4$1 OR CiA_4$2) OR En_4$0 AND CiA_4$0 AND CiR_4$0
+Dpp_4$2 * = En_4$0 AND (CiA_4$1 OR CiA_4$2)
+CiR_4$0 * = Smo_4$1 OR Smo_4$2 OR En_4$1
+CiR_4$1 * = Smo_4$0 AND En_4$0
+Smo_4$0 * = Hh_4$0
+Smo_4$1 * = Ptc_4$1 AND Hh_4$1
+Smo_4$2 * = Ptc_4$0 AND (Hh_4$1 OR Hh_4$2) OR Ptc_4$1 AND Hh_4$2
+Ptc_4$0 * = CiA_4$0
+Ptc_4$1 * = CiA_4$1 OR CiA_4$2
+
+##############
+Notes:
+- 'En_4' is a constant at $2 (merged into $1)
+- Node 'En_1~3' (3 nodes), 'CiR_1~3' (3 nodes) do not have level $2. Approximation: merging its $2 into $1
+	- question: En_1~3, CiR_1~3 won't get $2, but a lot of functions depends on this state. Does this make sense?
+- After the 'CiR_1~3' approximation, 'Ptc_1~3' can be simplified as well ($1 and $2 are the same)
+
+Ptc: original $1 -> $0, $2->$1
+En_1~3: $2 -> $1
+CiR_1~3: $2 -> $1
+En_4: $2 -> $1
+

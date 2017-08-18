@@ -1,0 +1,19 @@
+# Boolean rules - pairRule
+Slp$0 * = Eve$2 OR Odd$1 OR Ftz$1
+Slp$1 * = (Eve$0 OR Eve$1) AND Odd$0 AND Ftz$0
+Eve$0 * = Slp$1 OR  Slp$0 AND ((Eve$1 OR Eve$2) AND Run$1 AND Odd$1 OR Eve$0 AND ( Prd$0 OR Odd$1 ) )
+Eve$1 * = Slp$0 AND ((Eve$0 AND (Prd$1 OR Prd$2) AND Odd$0) OR ((Eve$1 OR Eve$2) AND (Run$0 AND Odd$0 AND Prd$0 OR (Odd$0 AND Run$1) OR (Odd$1 AND Run$0) ) ))
+Eve$2 * = Odd$0 AND Run$0 AND Slp$0 AND (Eve$1 OR Eve$2) AND (Prd$1 OR Prd$2)
+Run$0 * = Prd$0 OR Odd$1 OR Eve$2
+Run$1 * = (Prd$1 OR Prd$2) AND Odd$0 AND (Eve$0 OR Eve$1)
+Ppa$0 * = Eve$2
+Ppa$1 * = Eve$0 OR Eve$1
+Odd$0 * = Eve$1 OR Eve$2 OR Prd$1 OR Prd$2
+Odd$1 * = Prd$0 AND Eve$0
+Ftz$0 * = Slp$1 OR Odd$1 OR Eve$2
+Ftz$1 * = Slp$0 AND Odd$0 AND (Eve$0 OR Eve$1)
+Prd$0 * = Odd$1
+Prd$1 * = Odd$0 AND Ppa$1
+Prd$2 * = Odd$0 AND Ppa$0
+
+

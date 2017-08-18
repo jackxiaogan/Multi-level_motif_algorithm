@@ -1,0 +1,34 @@
+# Boolean rules			Segment_polarity_1cell.txt
+Wg_ext$0 * = 1
+Wg_ext$1 * = 0
+Hh_ext$0 * = 1
+Hh_ext$1 * = 0
+Fz$0 * = Wg$0 AND Wg_ext$0
+Fz$1 * = Wg_ext$1 OR Wg$1 OR Wg$2
+Dsh$0 * = Fz$0
+Dsh$1 * = Fz$1
+Slp$0 * = Dsh$0 OR En$1
+Slp$1 * = Dsh$1 AND En$0
+Wg$0 * = En$1 OR Slp$0 OR Ciact$0 OR Slp$1 AND En$0 AND Ciact$1 AND Nkd$2
+Wg$1 * = Ciact$1 AND Slp$1 AND En$0 AND (Nkd$0 OR Nkd$1)
+Wg$2 * = Ciact$2 AND Slp$1 AND En$0
+Ciact$0 * = Ci$0 OR Ci$1 AND Dsh$0 AND Pka$1
+Ciact$1 * = Ci$1 AND (Dsh$0 AND Pka$0 OR Dsh$1 AND Pka$1)
+Ciact$2 * = Ci$1 AND Dsh$1 AND Pka$0
+Nkd$0 * = En$1
+Nkd$1 * = Dsh$0 AND En$0
+Nkd$2 * = Dsh$1 AND En$0
+En$0 * = Slp$1 OR Dsh$0
+En$1 * = Slp$0 AND Dsh$1 
+Ci$0 * = En$1
+Ci$1 * = En$0
+Ptc$0 * = Hh_ext$1 OR En$1
+Ptc$1 * = Hh_ext$0 AND En$0 AND Ciact$0
+Ptc$2 * = Hh_ext$0 AND En$0 AND (Ciact$1 OR Ciact$2)
+Pka$0 * = Ptc$0
+Pka$1 * = Ptc$1 OR Ptc$2
+Cirep$0 * = Dsh$1 OR Pka$0 OR Ci$0
+Cirep$1 * = Ci$1 AND Pka$1 AND Dsh$0
+Hh$0 * = En$0 OR Cirep$1
+Hh$1 * = En$1 AND Cirep$0
+

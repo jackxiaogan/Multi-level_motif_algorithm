@@ -1,0 +1,218 @@
+# Boolean rules         DrosoMesoLogModel.txt
+Hop$0 * = 1
+Hop$1 * = 0
+Ci$0 * = 0
+Ci$1 * = 1
+Mad$0 * = 1
+Mad$1 * = 0
+Pnt$0 * = 1
+Pnt$1 * = 0
+Nicd$0 * = 0
+Nicd$1 * = 1
+Pan$0 * = 1
+Pan$1 * = 0
+Shn$0 * = 1
+Shn$1 * = 0
+SuH$0 * = 0
+SuH$1 * = 1
+En$0 * = 0
+En$1 * = 1
+Med$0 * = 0
+Med$1 * = 1
+Ths$0 * = 0
+Ths$1 * = 1
+Pyr$0 * = 0
+Pyr$1 * = 1
+Stat92E$0 * = Hop$0 AND (Tin$0 OR Tin$1)
+Stat92E$1 * = Hop$1 OR Tin$2
+Brk$0 * = Shn$1 AND Mad$1 AND Med$1
+Brk$1 * = Shn$0 OR Mad$0 OR Med$0
+Slp$0 * = Pan$0
+Slp$1 * = Pan$1
+Srp$0 * = Ci$0 OR Mad$1 AND Med$1
+Srp$1 * = Ci$1 AND En$0 AND (Mad$0 OR Med$0)
+Srp$2 * = Ci$1 AND En$1 AND (Mad$0 OR Med$0)
+E_S$0 * = Nicd$0 OR Stat92E$0 OR SuH$0
+E_S$1 * = Nicd$1 AND Stat92E$1 AND SuH$1
+Eve$0 * = Pnt$0 OR Htl$0 OR Mad$0 OR Pan$0 OR Med$0 OR Tin$1 OR Tin$0 OR Twi$0
+Eve$1 * = Pnt$1 AND Htl$1 AND Mad$1 AND Pan$1 AND Med$1 AND Tin$2 AND (Twi$1 OR Twi$2)
+Tin$0 * = Mad$0 OR Mad$1 AND (Med$0 AND Twi$0 AND Tin$0)
+Tin$1 * = Mad$1 AND (Med$1 OR Twi$1 OR Twi$2 OR Tin$1 OR Tin$2) AND (Med$0 OR Pan$0 OR Stat92E$0)
+Tin$2 * = Mad$1 AND Med$1 AND Pan$1 AND Stat92E$1
+Dsix4$0 * = Tin$0 AND Zfh1$0 OR Mad$1 AND Med$1
+Dsix4$1 * = (Tin$1 OR Tin$2 OR Zfh1$1) AND (Mad$0 OR Med$0)
+Twi$0 * = Twi$0 OR (Twi$1 OR Twi$2) AND Slp$0 AND (Da$0 OR E_S$1)
+Twi$1 * = (Twi$1 OR Twi$2) AND (Slp$1 AND (Da$0 OR E_S$1) OR Slp$0 AND Da$1)
+Twi$2 * = Slp$1 AND (Twi$1 OR Twi$2) AND Da$1 AND E_S$0
+Mef2$0 * = Tin$0 AND (Twi$0 OR Twi$1)
+Mef2$1 * = Tin$1 OR Tin$2 OR Twi$2
+Htl$0 * = (Pyr$0 OR Ths$0) AND (Pan$0 OR Ths$0 AND Pyr$0)
+Htl$1 * = (Pyr$1 AND Ths$1) OR Pan$1 AND (Ths$1 OR Pyr$1)
+Hbr$0 * = Pan$0 OR Htl$0
+Hbr$1 * = Pan$1 AND Htl$1
+Bap$0 * = Tin$0 OR (Tin$1 OR Tin$2) AND (Ci$0 OR En$0) AND ( Ci$0 OR En$0 OR Slp$0 OR Mad$0 OR Med$0) AND (Bin$0 OR Mad$0 OR Med$0 OR Slp$1 OR Ci$1 AND En$1 OR Ci$0 OR En$0) AND (Bin$0 AND (Mad$0 OR Med$0) OR Slp$1 OR Bin$1 AND Mad$1 AND Med$1 AND En$1 OR Ci$1 AND En$1 OR Ci$1 AND Mad$1 AND Med$1 AND Bin$1)
+Bap$1 * = (Tin$1 OR Tin$2) AND ((Ci$1 AND Slp$1 AND (En$1 OR En$0 AND Mad$1 AND Med$1)) OR ( (Bin$1 OR Mad$1 AND Med$1) AND Slp$0 AND (Mad$0 OR Med$0 OR Bin$0 OR En$0 AND Ci$0) AND (Ci$0 OR En$0) )  )
+Bap$2 * = Bin$1 AND Mad$1 AND Med$1 AND Slp$0 AND (Tin$1 OR Tin$2) AND (Ci$0 AND En$1 OR Ci$1 AND En$0) OR (Ci$1 AND (Tin$1 OR Tin$2) AND En$1 AND Slp$0 AND (Mad$0 OR Med$0) )
+Bap$3 * = Ci$1 AND En$1 AND Slp$0 AND Mad$1 AND Med$1 AND (Tin$1 OR Tin$2)
+Bin$0 * = Bap$0 OR Bap$1
+Bin$1 * = Bap$2 OR Bap$3
+Pnr$0 * = Doc$0 OR Tin$0
+Pnr$1 * = Doc$1 AND (Tin$1 OR Tin$2)
+Poxm$0 * = Pan$0 OR Twi$0 OR Mad$1 AND Med$1
+Poxm$1 * = Pan$1 AND (Twi$1 OR Twi$2) AND (Mad$0 OR Med$0)
+Doc$0 * = Mad$0 OR Med$0 OR Pan$0
+Doc$1 * = Mad$1 AND Med$1 AND Pan$1
+Zfh1$0 * = Twi$0
+Zfh1$1 * = Twi$1 OR Twi$2
+Emc$0 * = Nicd$0
+Emc$1 * = Nicd$1
+Da$0 * = Emc$1
+Da$1 * = Emc$0
+Eya$0 * = Twi$0 AND (Tin$0 OR Tin$1)
+Eya$1 * = Twi$1 OR Twi$2 OR Tin$2
+
+
+
+
+##########
+Reduction:
+Hh -> Ptc -> Smo -> Pka -> Ci
+Upd -> Dome -> Hop
+Dpp -> Tkv -> Mad
+Spi -> Der -> Ras -> RI -> Pnt
+Delta -> Notch -> Nicd
+Wg -> Pan
+
+Bin'$2' removed: no input
+
+#########   initial conditions   #########
+
+3. VP_FB: 
+Hop$0 * = 1
+Hop$1 * = 0
+Ci$0 * = 0
+Ci$1 * = 1
+Mad$0 * = 1
+Mad$1 * = 0
+Pnt$0 * = 1
+Pnt$1 * = 0
+Nicd$0 * = 0
+Nicd$1 * = 1
+Pan$0 * = 1
+Pan$1 * = 0
+Shn$0 * = 1
+Shn$1 * = 0
+SuH$0 * = 0
+SuH$1 * = 1
+En$0 * = 0
+En$1 * = 1
+Med$0 * = 0
+Med$1 * = 1
+Ths$0 * = 0
+Ths$1 * = 1
+Pyr$0 * = 0
+Pyr$1 * = 1
+
+2. DA_H: 
+Hop$0 * = 0
+Hop$1 * = 1
+Ci$0 * = 1
+Ci$1 * = 0
+Mad$0 * = 0
+Mad$1 * = 1
+Pnt$0 * = 0
+Pnt$1 * = 1
+Nicd$0 * = 0
+Nicd$1 * = 1
+Pan$0 * = 0
+Pan$1 * = 1
+Shn$0 * = 0
+Shn$1 * = 1
+SuH$0 * = 0
+SuH$1 * = 1
+En$0 * = 1
+En$1 * = 0
+Med$0 * = 0
+Med$1 * = 1
+Ths$0 * = 0
+Ths$1 * = 1
+Pyr$0 * = 0
+Pyr$1 * = 1
+
+
+
+4. VA_SM: 
+Hop$0 * = 1
+Hop$1 * = 0
+Ci$0 * = 1
+Ci$1 * = 0
+Mad$0 * = 1
+Mad$1 * = 0
+Pnt$0 * = 1
+Pnt$1 * = 0
+Nicd$0 * = 1
+Nicd$1 * = 0
+Pan$0 * = 0
+Pan$1 * = 1
+Shn$0 * = 1
+Shn$1 * = 0
+SuH$0 * = 0
+SuH$1 * = 1
+En$0 * = 1
+En$1 * = 0
+Med$0 * = 0
+Med$1 * = 1
+Ths$0 * = 0
+Ths$1 * = 1
+Pyr$0 * = 0
+Pyr$1 * = 1
+
+1. DP_VM: Spi = Upd = Wg =0
+Hop$0 * = 1
+Hop$1 * = 0
+Ci$0 * = 0
+Ci$1 * = 1
+Mad$0 * = 0
+Mad$1 * = 1
+Pnt$0 * = 1
+Pnt$1 * = 0
+Nicd$0 * = 0
+Nicd$1 * = 1
+Pan$0 * = 1
+Pan$1 * = 0
+Shn$0 * = 0
+Shn$1 * = 1
+SuH$0 * = 0
+SuH$1 * = 1
+En$0 * = 0
+En$1 * = 1
+Med$0 * = 0
+Med$1 * = 1
+Ths$0 * = 0
+Ths$1 * = 1
+Pyr$0 * = 0
+Pyr$1 * = 1
+
+
+
+
+######### scratch
+Ci & En & !Slp
+Ci & En & Slp
+
+Ci & En
+Ci & !En & Slp & Mad & Med
+
+(Ci$0 OR En$0) AND ( Ci$0 OR En$0 OR Slp$0 OR Mad$0 OR Med$0)
+
+Ci & !En & !Slp & Mad & Med & Bin
+!Ci & En & !Slp & Mad & Med & Bin
+!Slp  & 
+
+Bin:1 & Mad & Med & !(Ci & En) & !Slp & (Ci | En)
+
+(Bin$0 OR Mad$0 OR Med$0 OR Slp$1 OR Ci$1 AND En$1 OR Ci$0 OR En$0)
+
+(Bin:1 | (Mad & Med)) & !Slp & !(Bin:1 & Mad & Med & En) & !(Ci & En) & !(Ci & Mad & Med & Bin:1)
+
+(Bin$0 AND (Mad$0 OR Med$0) OR Slp$1 OR Bin$1 AND Mad$1 AND Med$1 AND En$1 OR Ci$1 AND En$1 OR Ci$1 AND Mad$1 AND Med$1 AND Bin$1)

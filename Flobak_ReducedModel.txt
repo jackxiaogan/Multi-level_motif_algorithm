@@ -1,0 +1,28 @@
+# Boolean rules - Flobak_ReducedModel
+GSK3$0 * = 0
+GSK3$1 * = 1
+betacatenin$0 * = 0
+betacatenin$1 * = 1
+TAK1$0 * = p38alpha$1
+TAK1$1 * = p38alpha$0
+PI3K$0 * = TAK1$1 AND ERK$1 AND betacatenin$0 AND GSK3$0
+PI3K$1 * = TAK1$0 OR ERK$0 OR betacatenin$1 OR GSK3$1
+MEK$0 * = ERK$1 AND TAK1$1 AND p38alpha$1 AND AKT$1 AND GSK3$0 AND betacatenin$0
+MEK$1 * = ERK$0 OR TAK1$0 OR p38alpha$0 OR AKT$0 OR GSK3$1 OR betacatenin$1
+p38alpha$0 * = ERK$1 OR p38alpha$1
+p38alpha$1 * = ERK$0 AND p38alpha$0
+ERK$0 * = MEK$0 AND (ERK$1 OR AKT$1)
+ERK$1 * = MEK$1 OR (ERK$0 AND AKT$0)
+AKT$0 * = (ERK$1 OR TAK1$1 OR AKT$1 OR GSK3$0) AND (PI3K$0 OR betacatenin$0 AND GSK3$0 AND TAK1$1)
+AKT$1 * = PI3K$1 AND (betacatenin$1 OR GSK3$1 OR TAK1$0) OR ERK$0 AND TAK1$0 AND AKT$0 AND GSK3$1
+Antisurvival$0 * = AKT$1 AND (p38alpha$1 OR ERK$1)
+Antisurvival$1 * = TAK1$1 AND (ERK$1 AND AKT$0 OR  AKT$1 AND ERK$0 AND p38alpha$0) OR ERK$0 AND (TAK1$0 AND AKT$1 AND p38alpha$0 or TAK1$1 AND AKT$0 AND (p38alpha$0 OR PI3K$0 OR GSK3$0 AND betacatenin$0))
+Antisurvival$2 * = AKT$0 AND (ERK$0 AND TAK1$1 AND p38alpha$1 AND PI3K$1 AND (GSK3$1 OR betacatenin$1) OR (TAK1$0 AND (p38alpha$0 OR PI3K$0 OR ERK$0)))
+Antisurvival$3 * = ERK$0 AND TAK1$0 AND AKT$0 AND p38alpha$1 AND PI3K$1
+Prosurvival$0 * = (ERK$0 OR PI3K$0) AND betacatenin$0 AND TAK1$1 OR (ERK$1 AND PI3K$1 AND TAK1$1 AND betacatenin$0 AND GSK3$0)
+Prosurvival$1 * = ERK$1 AND PI3K$1 AND TAK1$1 AND betacatenin$0 AND GSK3$1
+Prosurvival$2 * = (TAK1$1 AND betacatenin$1 OR TAK1$0) AND (ERK$0 OR PI3K$0)
+Prosurvival$3 * = ERK$1 AND PI3K$1 AND (TAK1$0 OR betacatenin$1)
+
+
+

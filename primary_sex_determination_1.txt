@@ -1,0 +1,95 @@
+# Boolean rules
+Gata4$0 * = 1
+Gata4$1 * = 0
+AF$0 * = 0
+AF$1 * = 1
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 1
+Y$1 * = 0
+AS$0 * = 1
+AS$1 * = 0
+IW$0 * = 0
+IW$1 * = 1
+Dmrt1$0 * = Foxl2$1 OR (Gata4$0 AND (Sox9$0 OR Sox9$1 OR Sf1$0))
+Dmrt1$1 * = (Gata4$1 OR (Sox9$2 AND (Sf1$1 OR Sf1$2))) AND Foxl2$0
+Foxl2$0 * = AF$0 OR Dmrt1$1
+Foxl2$1 * = AF$1 AND Dmrt1$0
+Sf1$0 * = Wt1$0
+Sf1$1 * = Wt1$1 AND (Sox9$0 OR Sox9$1)
+Sf1$2 * = Wt1$1 AND Sox9$2
+Sox9$0 * = Sf1$0 OR Foxl2$1 OR (Sf1$1 AND Foxl2$0 AND (Sry$0 AND b_cat$2 OR Sry$1 AND b_cat$2) )
+Sox9$1 * = Sry$0 AND (Sf1$1 OR Sf1$2) AND Foxl2$0 AND ((b_cat$0 OR b_cat$1) AND Sox9$0 OR b_cat$1 AND (Sox9$1 OR Sox9$2)) 
+Sox9$2 * = (Sf1$1 OR Sf1$2) AND Foxl2$0 AND ((Sry$1 AND (b_cat$0 OR b_cat$1)) OR (Sry$0 AND (Sox9$1 OR Sox9$2) AND b_cat$0 ))
+b_cat$0 * = Wnt4$0 OR Sox9$2
+b_cat$1 * = Wnt4$1 AND (Sox9$0 OR Sox9$1)
+b_cat$2 * = Wnt4$2 AND (Sox9$0 OR Sox9$1)
+Sry$0 * = Y$0 OR Wt1$0 OR AS$0 OR Sf1$0 OR Sox9$2 OR Gata4$0
+Sry$1 * = Y$1 AND Wt1$1 AND AS$1 AND (Sf1$1 OR Sf1$2) AND (Sox9$0 OR Sox9$1) AND Gata4$1
+Fgf9$0 * = Fgf9$0 AND (Sox9$0 OR Sox9$1)
+Fgf9$1 * = ((Fgf9$1 OR Fgf9$2) AND (Sox9$0 OR Sox9$1)) OR (Sox9$2 AND Fgf9$0)
+Fgf9$2 * = (Fgf9$1 OR Fgf9$2) AND Sox9$2
+Wnt4$0 * = IW$1 OR Wnt4$0
+Wnt4$1 * = IW$0 AND (Wnt4$1 OR Wnt4$2) AND (Fgf9$1 OR Fgf9$2)
+Wnt4$2 * = IW$0 AND (Wnt4$1 OR Wnt4$2) AND Fgf9$0
+
+
+
+
+# input combinations
+1. Male Initi
+Gata4$0 * = 0
+Gata4$1 * = 1
+AF$0 * = 1
+AF$1 * = 0
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 0
+Y$1 * = 1
+AS$0 * = 0
+AS$1 * = 1
+IW$0 * = 1
+IW$1 * = 0
+
+2. Male Mainte
+Gata4$0 * = 1
+Gata4$1 * = 0
+AF$0 * = 0
+AF$1 * = 1
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 0
+Y$1 * = 1
+AS$0 * = 1
+AS$1 * = 0
+IW$0 * = 0
+IW$1 * = 1
+
+3. Fem Initi
+Gata4$0 * = 0
+Gata4$1 * = 1
+AF$0 * = 1
+AF$1 * = 0
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 1
+Y$1 * = 0
+AS$0 * = 0
+AS$1 * = 1
+IW$0 * = 1
+IW$1 * = 0
+
+4. Fem Mainte
+Gata4$0 * = 1
+Gata4$1 * = 0
+AF$0 * = 0
+AF$1 * = 1
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 1
+Y$1 * = 0
+AS$0 * = 1
+AS$1 * = 0
+IW$0 * = 0
+IW$1 * = 1
+

@@ -1,0 +1,129 @@
+# Boolean rules - mechanistic_cellular
+earlyDpp$0 * = 1
+earlyDpp$1 * = 0
+earlyGrk$0 * = 0
+earlyGrk$1 * = 1
+Dpp$0 * = 1
+Dpp$1 * = 0
+Grk$0 * = 1
+Grk$1 * = 0
+Grk$2 * = 0
+Grk$3 * = 0
+Aos_ext$0 * = 1
+Aos_ext$1 * = 0
+Aos_ext$2 * = 0
+Rho_ext$0 * = 1
+Rho_ext$1 * = 0
+Rho_ext$2 * = 0
+Br_adj$0 * = 1
+Br_adj$1 * = 0
+Mid$0 * = Mid$0 AND (earlyDpp$1 OR earlyGrk$0)
+Mid$1 * = Mid$1 OR earlyDpp$0 AND earlyGrk$1
+dpERK$0 * = Grk$0 AND (S$0 OR A$1 AND X$0)
+dpERK$1 * = Grk$2 AND (S$2 AND A$1 AND X$0 OR (S$1 OR S$0) AND X$0) OR Grk$1 AND (S$2 AND A$1 AND X$0 OR S$1 AND X$0 OR S$0 AND X$0) OR (Grk$0 AND S$1 AND (A$0 OR X$1))
+dpERK$2 * = Grk$3 OR Grk$2 AND (X$1 OR X$0 AND S$2) OR Grk$1 AND (X$1 AND (S$1 OR S$2) OR X$0 AND S$2) OR Grk$0 AND S$2 AND (A$0 OR X$1)
+Mirr$0 * = Mid$1 OR dpERK$0
+Mirr$1 * = (dpERK$1 OR dpERK$2) AND Mid$0
+Pnt$0 * = dpERK$0 OR dpERK$1
+Pnt$1 * = dpERK$2
+Aos$0 * = dpERK$0 OR Mid$1 OR Pnt$0
+Aos$1 * = (dpERK$1 OR dpERK$2) AND Pnt$1 AND Mid$0
+A$0 * = Aos$0 AND Aos_ext$1 OR Aos_ext$0
+A$1 * = Aos_ext$2 OR Aos_ext$1 AND Aos$1
+Rho$0 * = dpERK$0 OR Mirr$0 OR Br$1
+Rho$1 * = dpERK$1 AND Mirr$1 AND Br$0
+Rho$2 * = dpERK$2 AND Mirr$1 AND Br$0
+S$0 * = Rho$0 AND Rho_ext$0
+S$1 * = Rho$1 OR Rho_ext$1
+S$2 * = Rho$2 OR Rho_ext$2
+Br$0 * = Dpp$1 OR Pnt$1 OR Br$0 AND Mirr$0
+Br$1 * = Dpp$0 AND Pnt$0 AND (Br$1 OR Mirr$1)
+X$0 * = Br$1 OR Br_adj$0
+X$1 * = Br_adj$1 AND Br$0
+
+
+#############
+inputs
+
+# R3
+earlyDpp$0 * = 0
+earlyDpp$1 * = 1
+earlyGrk$0 * = 1
+earlyGrk$1 * = 0
+Dpp$0 * = 0
+Dpp$1 * = 1
+Grk$0 * = 0
+Grk$1 * = 1
+Grk$2 * = 0
+Grk$3 * = 0
+Aos_ext$0 * = 0
+Aos_ext$1 * = 0
+Aos_ext$2 * = 1
+Rho_ext$0 * = 0
+Rho_ext$1 * = 0
+Rho_ext$2 * = 1
+Br_adj$0 * = 0
+Br_adj$1 * = 1
+
+
+# R5
+earlyDpp$0 * = 0
+earlyDpp$1 * = 1
+earlyGrk$0 * = 1
+earlyGrk$1 * = 0
+Dpp$0 * = 1
+Dpp$1 * = 0
+Grk$0 * = 1
+Grk$1 * = 0
+Grk$2 * = 0
+Grk$3 * = 0
+Aos_ext$0 * = 0
+Aos_ext$1 * = 0
+Aos_ext$2 * = 1
+Rho_ext$0 * = 0
+Rho_ext$1 * = 0
+Rho_ext$2 * = 1
+Br_adj$0 * = 0
+Br_adj$1 * = 1
+
+# R10
+earlyDpp$0 * = 1
+earlyDpp$1 * = 0
+earlyGrk$0 * = 0
+earlyGrk$1 * = 1
+Dpp$0 * = 1
+Dpp$1 * = 0
+Grk$0 * = 0
+Grk$1 * = 0
+Grk$2 * = 1
+Grk$3 * = 0
+Aos_ext$0 * = 1
+Aos_ext$1 * = 0
+Aos_ext$2 * = 0
+Rho_ext$0 * = 1
+Rho_ext$1 * = 0
+Rho_ext$2 * = 0
+Br_adj$0 * = 0
+Br_adj$1 * = 1
+
+# R12
+earlyDpp$0 * = 1
+earlyDpp$1 * = 0
+earlyGrk$0 * = 0
+earlyGrk$1 * = 1
+Dpp$0 * = 1
+Dpp$1 * = 0
+Grk$0 * = 1
+Grk$1 * = 0
+Grk$2 * = 0
+Grk$3 * = 0
+Aos_ext$0 * = 1
+Aos_ext$1 * = 0
+Aos_ext$2 * = 0
+Rho_ext$0 * = 1
+Rho_ext$1 * = 0
+Rho_ext$2 * = 0
+Br_adj$0 * = 1
+Br_adj$1 * = 0
+
+

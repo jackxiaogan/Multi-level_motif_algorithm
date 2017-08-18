@@ -1,0 +1,96 @@
+# Boolean rules   Dpp_Pathway.txt
+Dpp$0 * = 0
+Dpp$1 * = 0
+Dpp$2 * = 1
+Scw$0 * = 0
+Scw$1 * = 1
+Gbb$0 * = 0
+Gbb$1 * = 1
+Tld$0 * = 0
+Tld$1 * = 1
+Tsg$0 * = 1
+Tsg$1 * = 0
+Punt$0 * = 0
+Punt$1 * = 1
+Shn$0 * = 0
+Shn$1 * = 1
+Nej$0 * = 0
+Nej$1 * = 1
+Sog$0 * = Tld$1
+Sog$1 * = Tld$0
+Sax$0 * = Punt$0 OR Sog$1 OR Gbb$0 AND Scw$0 AND Dpp$0
+Sax$1 * = Punt$1 AND Sog$0 AND (Gbb$1 OR Scw$1 OR Dpp$1 OR Dpp$2)
+MadMed$0 * = Dad$0 AND Sax$0 AND Tkv$0 OR Dad$1 AND (Tkv$0 OR Tkv$1)
+MadMed$1 * = Tkv$2 AND Dad$1 OR Dad$0 AND(Tkv$1 OR Sax$1) AND (Tkv$1 OR Tkv$0)
+MadMed$2 * = Tkv$2 AND Dad$0
+Tkv$0 * = Punt$0 OR Sog$1 OR Tsg$1 OR (Dpp$0 AND Scw$0 AND Gbb$0)
+Tkv$1 * = Punt$1 AND (Dpp$1 OR Dpp$0) AND Sog$0 AND Tsg$0 AND (Dpp$1 OR Scw$1 OR Gbb$1)
+Tkv$2 * = Punt$1 AND Dpp$2 AND Sog$0 AND Tsg$0
+Dad$0 * = MadMed$0 OR MadMed$1 OR Brk$1
+Dad$1 * = MadMed$2 AND Brk$0
+Targets$0 * = MadMed$0 OR Nej$0 OR Brk$1
+Targets$1 * = MadMed$1 OR MadMed$2 AND Nej$1 AND Brk$0
+Brk$0 * = MadMed$1 OR MadMed$2 OR Shn$1
+Brk$1 * = MadMed$0 AND Shn$0
+
+
+
+########
+1. No_Dpp
+Dpp$0 * = 1
+Dpp$1 * = 0
+Dpp$2 * = 0
+Scw$0 * = 0
+Scw$1 * = 1
+Gbb$0 * = 0
+Gbb$1 * = 1
+Tld$0 * = 1
+Tld$1 * = 0
+Tsg$0 * = 0
+Tsg$1 * = 1
+Punt$0 * = 0
+Punt$1 * = 1
+Shn$0 * = 1
+Shn$1 * = 0
+Nej$0 * = 0
+Nej$1 * = 1
+
+2. Medium_Dpp
+Dpp$0 * = 0
+Dpp$1 * = 1
+Dpp$2 * = 0
+Scw$0 * = 0
+Scw$1 * = 1
+Gbb$0 * = 0
+Gbb$1 * = 1
+Tld$0 * = 0
+Tld$1 * = 1
+Tsg$0 * = 1
+Tsg$1 * = 0
+Punt$0 * = 0
+Punt$1 * = 1
+Shn$0 * = 0
+Shn$1 * = 1
+Nej$0 * = 0
+Nej$1 * = 1
+
+3. High_Dpp
+Dpp$0 * = 0
+Dpp$1 * = 0
+Dpp$2 * = 1
+Scw$0 * = 0
+Scw$1 * = 1
+Gbb$0 * = 0
+Gbb$1 * = 1
+Tld$0 * = 0
+Tld$1 * = 1
+Tsg$0 * = 1
+Tsg$1 * = 0
+Punt$0 * = 0
+Punt$1 * = 1
+Shn$0 * = 0
+Shn$1 * = 1
+Nej$0 * = 0
+Nej$1 * = 1
+
+

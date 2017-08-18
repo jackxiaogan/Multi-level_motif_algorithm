@@ -1,0 +1,91 @@
+# Boolean rules   EGF_Pathway.txt
+Spi$0 * = 0
+Spi$1 * = 0
+Spi$2 * = 1
+Aos$0 * = 1
+Aos$1 * = 0
+Shc$0 * = 0
+Shc$1 * = 1
+Cbl$0 * = 1
+Cbl$1 * = 0
+Kek$0 * = 0
+Kek$1 * = 1
+Der$0 * = Spi$1 AND (Aos$1 OR Kek$1 OR Cbl$1 OR Shc$0) OR Spi$0 AND (Vein$0 OR Aos$1 OR Kek$1 OR Cbl$1 OR Shc$0)
+Der$1 * = Spi$2 AND Shc$1 AND (Kek$1 OR Aos$1 OR Cbl$1) OR (Spi$1 OR Vein$1 AND Spi$0) AND Aos$0 AND Kek$0 AND Cbl$0 AND Shc$1 
+Der$2 * = Spi$2 AND Kek$0 AND Aos$0 AND Cbl$0 AND Shc$1
+Vein$0 * = Spi$0 OR Der$0
+Vein$1 * = (Spi$1 OR Spi$2) AND (Der$1 OR Der$2)
+
+
+
+
+#########
+The rest of the network is a tree (no more cycles)
+
+
+
+#################
+# High_Spi
+Spi$0 * = 0
+Spi$1 * = 0
+Spi$2 * = 1
+Aos$0 * = 1
+Aos$1 * = 0
+Shc$0 * = 0
+Shc$1 * = 1
+Cbl$0 * = 1
+Cbl$1 * = 0
+Kek$0 * = 1
+Kek$1 * = 0
+
+# Spi2 + Aos
+Spi$0 * = 0
+Spi$1 * = 0
+Spi$2 * = 1
+Aos$0 * = 0
+Aos$1 * = 1
+Shc$0 * = 0
+Shc$1 * = 1
+Cbl$0 * = 1
+Cbl$1 * = 0
+Kek$0 * = 1
+Kek$1 * = 0
+
+# Spi2 + Kek
+Spi$0 * = 0
+Spi$1 * = 0
+Spi$2 * = 1
+Aos$0 * = 1
+Aos$1 * = 0
+Shc$0 * = 0
+Shc$1 * = 1
+Cbl$0 * = 1
+Cbl$1 * = 0
+Kek$0 * = 0
+Kek$1 * = 1
+
+# Medium_Spi
+Spi$0 * = 0
+Spi$1 * = 1
+Spi$2 * = 0
+Aos$0 * = 1
+Aos$1 * = 0
+Shc$0 * = 0
+Shc$1 * = 1
+Cbl$0 * = 1
+Cbl$1 * = 0
+Kek$0 * = 1
+Kek$1 * = 0
+
+# No_Spi
+Spi$0 * = 1
+Spi$1 * = 0
+Spi$2 * = 0
+Aos$0 * = 1
+Aos$1 * = 0
+Shc$0 * = 0
+Shc$1 * = 1
+Cbl$0 * = 1
+Cbl$1 * = 0
+Kek$0 * = 1
+Kek$1 * = 0

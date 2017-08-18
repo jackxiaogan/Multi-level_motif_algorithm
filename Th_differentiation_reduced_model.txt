@@ -1,0 +1,187 @@
+# Boolean rules   Th_differentiation_reduced_model.txt
+IFNB_e$0 * = 1
+IFNB_e$1 * = 0
+IFNG_e$0 * = 1
+IFNG_e$1 * = 0
+IL27_e$0 * = 1
+IL27_e$1 * = 0
+IL6_e$0 * = 1
+IL6_e$1 * = 0
+IL21_e$0 * = 1
+IL21_e$1 * = 0
+IL23_e$0 * = 1
+IL23_e$1 * = 0
+IL10_e$0 * = 1
+IL10_e$1 * = 0
+TGFB_e$0 * = 1
+TGFB_e$1 * = 0
+IL12_e$0 * = 1
+IL12_e$1 * = 0
+IL4_e$0 * = 1
+IL4_e$1 * = 0
+IL15_e$0 * = 1
+IL15_e$1 * = 0
+IL2_e$0 * = 1
+IL2_e$1 * = 0
+APC$0 * = 0
+APC$1 * = 1
+STAT1$0 * = IFNG$0 AND IFNG_e$0 AND IFNB_e$0 AND IL27_e$0
+STAT1$1 * = IFNG$1 OR IFNG_e$1 OR IFNB_e$1 OR IL27_e$1
+STAT4$0 * = STAT1$0 OR IL12_e$0 OR GATA3$1 OR STAT6$1
+STAT4$1 * = STAT1$1 AND IL12_e$1 AND GATA3$0 AND STAT6$0
+STAT6$0 * = IL4$0 AND IL4_e$0
+STAT6$1 * = IL4_e$1 OR IL4$1
+IL2RA$0 * = NFAT$0 OR FOXP3$0 AND STAT5$0 AND TGFB_e$0 AND TGFB$0 AND APC$0
+IL2RA$1 * = NFAT$1 AND (FOXP3$1 OR STAT5$1 OR TGFB_e$1 OR TGFB$1 OR APC$1)
+IL2R$0 * = IL2$0 AND IL2_e$0
+IL2R$1 * = IL2RA$0 AND (IL2$1 OR IL2_e$1)
+IL2R$2 * = IL2RA$1 AND (IL2$1 OR IL2_e$1)
+NFAT$0 * = APC$0
+NFAT$1 * = APC$1
+STAT5$0 * = IL2R$0 AND (IL15_e$0 OR IL4$1 OR IL4_e$1) AND (STAT5$2 OR IL4_e$0 AND IL4$0) 
+STAT5$1 * = IL2R$1 AND (STAT5$0 OR STAT5$1 OR IL4$0 AND IL4_e$0) OR IL2R$0 AND (((STAT5$0 OR STAT5$1) AND (IL4$1 OR IL4_e$1)) OR IL15_e$1 AND IL4_e$0 AND IL4$0)
+STAT5$2 * = IL2R$2 OR ((IL4$1 OR IL4_e$1) AND STAT5$2)
+IFNG$0 * = proliferation$0 OR NFAT$0 OR FOXP3$1 OR STAT3$1 OR STAT4$0 AND TBET$0
+IFNG$1 * = proliferation$1 AND NFAT$1 AND (STAT4$1 OR TBET$1) AND FOXP3$0 AND STAT3$0
+IL21$0 * = STAT3$0 OR proliferation$0 OR NFAT$0
+IL21$1 * = STAT3$1 AND proliferation$1 AND NFAT$1
+IL23$0 * = STAT3$0 OR proliferation$0 OR NFAT$0
+IL23$1 * = STAT3$1 AND proliferation$1 AND NFAT$1
+IL10$0 * = proliferation$0 OR NFAT$0 OR GATA3$0 AND STAT3$0
+IL10$1 * = proliferation$1 AND NFAT$1 AND (GATA3$1 OR STAT3$1)
+TGFB$0 * = FOXP3$0 OR proliferation$0 OR NFAT$0
+TGFB$1 * = FOXP3$1 AND proliferation$1 AND NFAT$1
+IL17$0 * = proliferation$0 OR STAT3$0 OR RoRGT$0 OR NFAT$0 OR APC$0 OR FOXP3$1 OR STAT5$1 OR STAT5$2 OR STAT1$1 OR STAT6$1
+IL17$1 * = proliferation$1 AND STAT3$1 AND RoRGT$1 AND NFAT$1 AND APC$1 AND FOXP3$0 AND STAT5$0 AND STAT1$0 AND STAT6$0
+IL2$0 * = FOXP3$1 OR STAT6$1 AND (STAT5$1 OR STAT5$2) OR ((APC$0 OR TBET$1) AND (APC$1 OR NFAT$0) )
+IL2$1 * = FOXP3$0 AND (APC$1 AND TBET$0 OR APC$0 AND NFAT$1) AND (STAT5$0 OR STAT6$0)
+IL4$0 * = GATA3$0 OR proliferation$0 OR NFAT$0 OR TBET$1 OR STAT1$1 OR FOXP3$1
+IL4$1 * = GATA3$1 AND proliferation$1 AND NFAT$1 AND FOXP3$0 AND STAT1$0 AND TBET$0
+TBET$0 * = GATA3$1 OR TBET$0 AND STAT1$0
+TBET$1 * = GATA3$0 AND (TBET$1 OR STAT1$1)
+GATA3$0 * = TBET$1 OR GATA3$0 AND STAT6$0
+GATA3$1 * = TBET$0 AND (GATA3$1 OR STAT6$1)
+RoRGT$0 * = (RoRGT$0 AND STAT3$0 OR TGFB_e$0 AND TGFB$0) AND (STAT3$0 OR RoRGT$0 OR TGFB$1 OR TGFB_e$1)
+RoRGT$1 * = (RoRGT$1 OR STAT3$1) AND (TGFB_e$1 OR TGFB$1) OR (STAT3$1 AND RoRGT$1 AND TGFB$0 AND TGFB_e$0)
+FOXP3$0 * = STAT5$0 OR NFAT$0 OR (FOXP3$0 AND (STAT1$1 OR TGFB$0 AND TGFB_e$0 OR RoRGT$1 AND STAT3$1))
+FOXP3$1 * = (STAT5$1 OR STAT5$2) AND NFAT$1 AND (FOXP3$1 OR FOXP3$0 AND STAT1$0 AND (TGFB_e$1 OR TGFB$1) AND (RoRGT$0 OR STAT3$0))
+proliferation$0 * = proliferation$0 AND (STAT5$0 OR STAT5$1)
+proliferation$1 * = proliferation$1 OR STAT5$2
+STAT3$0 * = (((IL23$1 OR IL23_e$0) AND IL23$0) OR ((RoRGT$0 OR ((STAT3$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$1 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0)) AND STAT3$0)) AND (RoRGT$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$1 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0)))) AND (IL23$1 OR IL23_e$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$1 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0))
+STAT3$1 * = (IL23_e$0 AND IL23$0 AND (( IL27_e$0 AND (( IL21$0 AND (IL10_e$1 OR (IL10_e$0 AND (IL10$1 OR (IL10$0 AND (IL6_e$0 AND IL21_e$1 OR IL6_e$1)))))) OR IL21$1 )) OR IL27_e$1) ) OR ( (IL23_e$0 AND IL23$1 OR IL23_e$1) AND ((STAT3$1 AND ((RoRGT$0 AND (( IL27_e$0 AND (( IL21$0 AND (IL10_e$1 OR (IL10_e$0 AND IL10$1 OR (IL10$0 AND ((IL6_e$0 AND IL21_e$1) OR IL6_e$1)))))) OR IL21$1)) OR IL27_e$1)) OR RoRGT$1)) OR (STAT3$0 AND ((IL27_e$0 AND ((IL21$0 AND (IL10_e$1 OR (IL10_e$0 AND (IL10$1 OR (IL10$0 AND ((IL6_e$0 AND IL21_e$1) OR IL6_e$1)))))) OR IL21$1)) OR IL27_e$1)) )
+
+
+######## input combinations
+
+1. none 
+IFNB_e$0 * = 1
+IFNB_e$1 * = 0
+IFNG_e$0 * = 1
+IFNG_e$1 * = 0
+IL27_e$0 * = 1
+IL27_e$1 * = 0
+IL6_e$0 * = 1
+IL6_e$1 * = 0
+IL21_e$0 * = 1
+IL21_e$1 * = 0
+IL23_e$0 * = 1
+IL23_e$1 * = 0
+IL10_e$0 * = 1
+IL10_e$1 * = 0
+TGFB_e$0 * = 1
+TGFB_e$1 * = 0
+IL12_e$0 * = 1
+IL12_e$1 * = 0
+IL4_e$0 * = 1
+IL4_e$1 * = 0
+IL15_e$0 * = 1
+IL15_e$1 * = 0
+IL2_e$0 * = 1
+IL2_e$1 * = 0
+APC$0 * = 1
+APC$1 * = 0
+
+3. pro_1
+IFNB_e$0 * = 1
+IFNB_e$1 * = 0
+IFNG_e$0 * = 0
+IFNG_e$1 * = 1
+IL27_e$0 * = 1
+IL27_e$1 * = 0
+IL6_e$0 * = 1
+IL6_e$1 * = 0
+IL21_e$0 * = 1
+IL21_e$1 * = 0
+IL23_e$0 * = 1
+IL23_e$1 * = 0
+IL10_e$0 * = 1
+IL10_e$1 * = 0
+TGFB_e$0 * = 1
+TGFB_e$1 * = 0
+IL12_e$0 * = 1
+IL12_e$1 * = 0
+IL4_e$0 * = 1
+IL4_e$1 * = 0
+IL15_e$0 * = 1
+IL15_e$1 * = 0
+IL2_e$0 * = 0
+IL2_e$1 * = 1
+APC$0 * = 0
+APC$1 * = 1
+
+
+5. pro_17
+IFNB_e$0 * = 1
+IFNB_e$1 * = 0
+IFNG_e$0 * = 1
+IFNG_e$1 * = 0
+IL27_e$0 * = 1
+IL27_e$1 * = 0
+IL6_e$0 * = 0
+IL6_e$1 * = 1
+IL21_e$0 * = 1
+IL21_e$1 * = 0
+IL23_e$0 * = 1
+IL23_e$1 * = 0
+IL10_e$0 * = 1
+IL10_e$1 * = 0
+TGFB_e$0 * = 0
+TGFB_e$1 * = 1
+IL12_e$0 * = 1
+IL12_e$1 * = 0
+IL4_e$0 * = 1
+IL4_e$1 * = 0
+IL15_e$0 * = 1
+IL15_e$1 * = 0
+IL2_e$0 * = 1
+IL2_e$1 * = 0
+APC$0 * = 0
+APC$1 * = 1
+
+########   scratch
+
+
+(((!IL23 & IL23_e:1) | IL23:1) & ((RoRGT:1 & ((!STAT3 & ((!IL6_e & ((!IL21 & (IL21_e:1 | (!IL21_e & (IL10_e:1 | (!IL10_e & ((!IL10 & IL27_e:1) | IL10:1)))))) | IL21:1)) | IL6_e:1)) | STAT3:1)) | (!RoRGT & ((!IL6_e & ((!IL21 & (IL21_e:1 | (!IL21_e & (IL10_e:1 | (!IL10_e & ((!IL10 & IL27_e:1) | IL10:1)))))) | IL21:1)) | IL6_e:1)))) | (!IL23 & !IL23_e & ((!IL6_e & ((!IL21 & (IL21_e:1 | (!IL21_e & (IL10_e:1 | (!IL10_e & ((!IL10 & IL27_e:1) | IL10:1)))))) | IL21:1)) | IL6_e:1))
+
+(((IL23$1 OR IL23_e$0) AND IL23$0) OR ((RoRGT$0 OR ((STAT3$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$1 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0)) AND STAT3$0)) AND (RoRGT$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$1 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0)))) AND (IL23$1 OR IL23_e$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$0 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0))
+
+
+
+
+(((!STAT1 & !RoRGT) | (!STAT1 & RoRGT:1 & !STAT3)) & ((!TGFB_e & ((!TGFB & FOXP3:1 & STAT5:1 & NFAT:1) | (TGFB:1 & STAT5:1 & NFAT:1))) | (TGFB_e:1 & STAT5:1 & NFAT:1))) | (((!STAT1 & RoRGT:1 & STAT3:1) | STAT1:1) & FOXP3:1 & STAT5:1 & NFAT:1)
+
+
+STAT3$0 * = (((IL23$1 OR IL23_e$0) AND IL23$0) OR ((RoRGT$0 OR ((STAT3$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$1 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0)) AND STAT3$0)) AND (RoRGT$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$1 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0)))) AND (IL23$1 OR IL23_e$1 OR ((IL6_e$1 OR ((IL21$1 OR (IL21_e$0 AND (IL21_e$1 OR (IL10_e$0 AND (IL10_e$0 OR ((IL10$1 OR IL27_e$0) AND IL10$0)))))) AND IL21$0)) AND IL6_e$0))
+STAT3$1 * = (IL23_e$0 AND IL23$0 AND (( IL27_e$0 AND (( IL21$0 AND (IL10_e$1 OR (IL10_e$0 AND (IL10$1 OR (IL10$0 AND (IL6_e$0 AND IL21_e$1 OR IL6_e$1)))))) OR IL21$1 )) OR IL27_e$1) ) OR ( (IL23_e$0 AND IL23$1 OR IL23_e$1) AND ((STAT3$1 AND ((RoRGT$0 AND (( IL27_e$0 AND (( IL21$0 AND (IL10_e$1 OR (IL10_e$0 AND IL10$1 OR (IL10$0 AND ((IL6_e$0 AND IL21_e$1) OR IL6_e$1)))))) OR IL21$1)) OR IL27_e$1)) OR RoRGT$1)) OR (STAT3$0 AND ((IL27_e$0 AND ((IL21$0 AND (IL10_e$1 OR (IL10_e$0 AND (IL10$1 OR (IL10$0 AND ((IL6_e$0 AND IL21_e$1) OR IL6_e$1)))))) OR IL21$1)) OR IL27_e$1)) )
+
+
+
+
+
+! (A & B) = !A | !B = A & !B | !A
+ 
+A&!B = (!A | !B) & A
+A&B | !A
+
+
+

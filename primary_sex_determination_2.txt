@@ -1,0 +1,170 @@
+# Boolean rules         primary_sex_determination_2.txt
+Gata4$0 * = 1
+Gata4$1 * = 0
+AF$0 * = 0
+AF$1 * = 1
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 1
+Y$1 * = 0
+AS_p$0 * = 1
+AS_p$1 * = 0
+AS_c$0 * = 1
+AS_c$1 * = 0
+IW$0 * = 0
+IW$1 * = 1
+Dmrt1_p$0 * = Foxl2_p$1 OR (Gata4$0 AND (Sox9_p$0 OR Sox9_p$1 OR Sf1_p$0))
+Dmrt1_p$1 * = (Gata4$1 OR (Sox9_p$2 AND (Sf1_p$1 OR Sf1_p$2))) AND Foxl2_p$0
+Foxl2_p$0 * = AF$0 OR Dmrt1_p$1
+Foxl2_p$1 * = AF$1 AND Dmrt1_p$0
+Sf1_p$0 * = Wt1$0
+Sf1_p$1 * = Wt1$1 AND (Sox9_p$0 OR Sox9_p$1)
+Sf1_p$2 * = Wt1$1 AND Sox9_p$2
+Sox9_p$0 * = Sf1_p$0 OR Foxl2_p$1 OR (Sf1_p$1 AND Foxl2_p$0 AND (Sry_p$0 AND b_cat_p$2 OR Sry_p$1 AND b_cat_p$2) )
+Sox9_p$1 * = Sry_p$0 AND (Sf1_p$1 OR Sf1_p$2) AND Foxl2_p$0 AND ((b_cat_p$0 OR b_cat_p$1) AND Sox9_p$0 OR b_cat_p$1 AND (Sox9_p$1 OR Sox9_p$2)) 
+Sox9_p$2 * = (Sf1_p$1 OR Sf1_p$2) AND Foxl2_p$0 AND ((Sry_p$1 AND (b_cat_p$0 OR b_cat_p$1)) OR (Sry_p$0 AND (Sox9_p$1 OR Sox9_p$2) AND b_cat_p$0 ))
+b_cat_p$0 * = Wnt4_p$0 OR Sox9_p$2
+b_cat_p$1 * = Wnt4_p$1 AND (Sox9_p$0 OR Sox9_p$1)
+b_cat_p$2 * = Wnt4_p$2 AND (Sox9_p$0 OR Sox9_p$1)
+Sry_p$0 * = Y$0 OR Wt1$0 OR AS_p$0 OR Sf1_p$0 OR Sox9_p$2 
+Sry_p$1 * = Y$1 AND Wt1$1 AND AS_p$1 AND (Sf1_p$1 OR Sf1_p$2) AND (Sox9_p$0 OR Sox9_p$1) 
+Fgf9_p$0 * = Fgf9_pr$0 AND (Sox9_p$0 OR Sox9_p$1)
+Fgf9_p$1 * = ((Fgf9_pr$1 OR Fgf9_pr$2) AND (Sox9_p$0 OR Sox9_p$1)) OR (Sox9_p$2 AND Fgf9_pr$0)
+Fgf9_p$2 * = (Fgf9_pr$1 OR Fgf9_pr$2) AND Sox9_p$2
+Fgf9_pr$0 * = Fgf9_p$0
+Fgf9_pr$1 * = (Fgf9_c$0 OR Fgf9_c$1) AND (Fgf9_p$1 OR Fgf9_p$2)
+Fgf9_pr$2 * = Fgf9_c$2 AND (Fgf9_p$1 OR Fgf9_p$2)
+Wnt4_p$0 * = IW$1 OR Wnt4_p$0 OR Fgf9_pr$2
+Wnt4_p$1 * = IW$0 AND (Wnt4_p$1 OR Wnt4_p$2) AND Fgf9_pr$1
+Wnt4_p$2 * = IW$0 AND (Wnt4_p$1 OR Wnt4_p$2) AND Fgf9_pr$0
+Dmrt1_c$0 * = Foxl2_c$1 OR (Gata4$0 AND (Sox9_c$0 OR Sox9_c$1 OR Sf1_c$0))
+Dmrt1_c$1 * = (Gata4$1 OR (Sox9_c$2 AND (Sf1_c$1 OR Sf1_c$2))) AND Foxl2_c$0
+Foxl2_c$0 * = AF$0 OR Dmrt1_c$1
+Foxl2_c$1 * = AF$1 AND Dmrt1_c$0
+Sf1_c$0 * = Wt1$0
+Sf1_c$1 * = Wt1$1 AND (Sox9_c$0 OR Sox9_c$1)
+Sf1_c$2 * = Wt1$1 AND Sox9_c$2
+Sox9_c$0 * = Sf1_c$0 OR Foxl2_c$1 OR (Sf1_c$1 AND Foxl2_c$0 AND (Sry_c$0 AND b_cat_c$2 OR Sry_c$1 AND b_cat_c$2) )
+Sox9_c$1 * = Sry_c$0 AND (Sf1_c$1 OR Sf1_c$2) AND Foxl2_c$0 AND ((b_cat_c$0 OR b_cat_c$1) AND Sox9_c$0 OR b_cat_c$1 AND (Sox9_c$1 OR Sox9_c$2)) 
+Sox9_c$2 * = (Sf1_c$1 OR Sf1_c$2) AND Foxl2_c$0 AND ((Sry_c$1 AND (b_cat_c$0 OR b_cat_c$1)) OR (Sry_c$0 AND (Sox9_c$1 OR Sox9_c$2) AND b_cat_c$0 ))
+b_cat_c$0 * = Wnt4_c$0 OR Sox9_c$2
+b_cat_c$1 * = Wnt4_c$1 AND (Sox9_c$0 OR Sox9_c$1)
+b_cat_c$2 * = Wnt4_c$2 AND (Sox9_c$0 OR Sox9_c$1)
+Sry_c$0 * = Y$0 OR Wt1$0 OR AS_c$0 OR Sf1_c$0 OR Sox9_c$2 
+Sry_c$1 * = Y$1 AND Wt1$1 AND AS_c$1 AND (Sf1_c$1 OR Sf1_c$2) AND (Sox9_c$0 OR Sox9_c$1) 
+Fgf9_c$0 * = Fgf9_cr$0 AND (Sox9_c$0 OR Sox9_c$1)
+Fgf9_c$1 * = ((Fgf9_cr$1 OR Fgf9_cr$2) AND (Sox9_c$0 OR Sox9_c$1)) OR (Sox9_c$2 AND Fgf9_cr$0)
+Fgf9_c$2 * = (Fgf9_cr$1 OR Fgf9_cr$2) AND Sox9_c$2
+Fgf9_cr$0 * = Fgf9_c$0
+Fgf9_cr$1 * = (Fgf9_p$0 OR Fgf9_p$1) AND (Fgf9_c$1 OR Fgf9_c$2)
+Fgf9_cr$2 * = Fgf9_p$2 AND (Fgf9_c$1 OR Fgf9_c$2)
+Wnt4_c$0 * = IW$1 OR Wnt4_c$0 OR Fgf9_cr$2
+Wnt4_c$1 * = IW$0 AND (Wnt4_c$1 OR Wnt4_c$2) AND Fgf9_cr$1
+Wnt4_c$2 * = IW$0 AND (Wnt4_c$1 OR Wnt4_c$2) AND Fgf9_cr$0
+
+
+
+
+
+# input combinations
+1. WT_male_t1
+Gata4$0 * = 0
+Gata4$1 * = 1
+AF$0 * = 1
+AF$1 * = 0
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 0
+Y$1 * = 1
+AS_p$0 * = 1
+AS_p$1 * = 0
+AS_c$0 * = 0
+AS_c$1 * = 1
+IW$0 * = 1
+IW$1 * = 0
+
+2. WT_male_t2
+Gata4$0 * = 0
+Gata4$1 * = 1
+AF$0 * = 1
+AF$1 * = 0
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 0
+Y$1 * = 1
+AS_p$0 * = 0
+AS_p$1 * = 1
+AS_c$0 * = 0
+AS_c$1 * = 1
+IW$0 * = 1
+IW$1 * = 0
+
+
+3. WT_male_t3
+Gata4$0 * = 1
+Gata4$1 * = 0
+AF$0 * = 0
+AF$1 * = 1
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 0
+Y$1 * = 1
+AS_p$0 * = 1
+AS_p$1 * = 0
+AS_c$0 * = 1
+AS_c$1 * = 0
+IW$0 * = 0
+IW$1 * = 1
+
+4.  WT_female_t1
+Gata4$0 * = 0
+Gata4$1 * = 1
+AF$0 * = 1
+AF$1 * = 0
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 1
+Y$1 * = 0
+AS_p$0 * = 1
+AS_p$1 * = 0
+AS_c$0 * = 0
+AS_c$1 * = 1
+IW$0 * = 1
+IW$1 * = 0
+
+5. WT_female_t2
+Gata4$0 * = 0
+Gata4$1 * = 1
+AF$0 * = 1
+AF$1 * = 0
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 1
+Y$1 * = 0
+AS_p$0 * = 0
+AS_p$1 * = 1
+AS_c$0 * = 0
+AS_c$1 * = 1
+IW$0 * = 1
+IW$1 * = 0
+
+
+6. WT_female_t3
+Gata4$0 * = 1
+Gata4$1 * = 0
+AF$0 * = 0
+AF$1 * = 1
+Wt1$0 * = 0
+Wt1$1 * = 1
+Y$0 * = 1
+Y$1 * = 0
+AS_p$0 * = 1
+AS_p$1 * = 0
+AS_c$0 * = 1
+AS_c$1 * = 0
+IW$0 * = 0
+IW$1 * = 1
+
+
+
+

@@ -1,0 +1,55 @@
+# Boolean rules         GapModel.txt
+Hb_A$0 * = 0
+Hb_A$1 * = 0
+Hb_A$2 * = 0
+Hb_A$3 * = 1
+Gt_A$0 * = Kr_A$1 OR Kr_A$2
+Gt_A$1 * = Kr_A$0
+Kr_A$0 * = Hb_A$0 OR Gt_A$1 AND Kni_A$1 OR Hb_A$3
+Kr_A$1 * = (Hb_A$1 OR Hb_A$2) AND (Gt_A$1 AND Kni_A$0 OR Gt_A$0 AND Kni_A$1)  
+Kr_A$2 * = (Hb_A$1 OR Hb_A$2) AND Gt_A$0 AND Kni_A$0
+Kni_A$0 * = 1
+Kni_A$1 * = 0
+Hb_B$0 * = 0
+Hb_B$1 * = 0
+Hb_B$2 * = 1
+Hb_B$3 * = 0
+Gt_B$0 * = Kr_B$1 OR Kr_B$2
+Gt_B$1 * = Kr_B$0
+Kr_B$0 * = Hb_B$0 OR Hb_B$3 OR Gt_B$1 AND Kni_B$1 
+Kr_B$1 * = (Hb_B$1 OR Hb_B$2) AND (Gt_B$1 AND Kni_B$0 OR Gt_B$0 AND Kni_B$1)  
+Kr_B$2 * = (Hb_B$1 OR Hb_B$2) AND Gt_B$0 AND Kni_B$0
+Kni_B$0 * = 1
+Kni_B$1 * = 0
+Hb_C$0 * = 0
+Hb_C$1 * = 1
+Hb_C$2 * = 0
+Hb_C$3 * = 0
+Gt_C$0 * = Kr_C$1 OR Kr_C$2
+Gt_C$1 * = Kr_C$0
+Kr_C$0 * = Hb_C$0 OR Hb_C$3 OR Gt_C$1 AND Kni_C$1 
+Kr_C$1 * = (Hb_C$1 OR Hb_C$2) AND (Gt_C$1 AND Kni_C$0 OR Gt_C$0 AND Kni_C$1)  
+Kr_C$2 * = (Hb_C$1 OR Hb_C$2) AND Gt_C$0 AND Kni_C$0
+Kni_C$0 * = Gt_C$1 OR Gt_C$0 AND (Hb_C$2 OR Hb_C$3)
+Kni_C$1 * = Gt_C$0 AND (Hb_C$0 OR Hb_C$1)
+Hb_D$0 * = 1
+Hb_D$1 * = 0
+Hb_D$2 * = 0
+Hb_D$3 * = 0
+Gt_D$0 * = Kr_D$1 OR Kr_D$2 OR Hb_D$1 OR Hb_D$2 OR Hb_D$3
+Gt_D$1 * = Kr_D$0 and Hb_D$0
+Kr_D$0 * = 1 
+Kr_D$1 * = 0 
+Kr_D$2 * = 0
+Kni_D$0 * = Gt_D$1 OR Gt_D$0 AND (Hb_D$2 OR Hb_D$3)
+Kni_D$1 * = Gt_D$0 AND (Hb_D$0 OR Hb_D$1)
+
+
+
+
+##########
+use '_A' to indicate which region (which model) the nodes correspond to. There are 4 independent 4-node region/sub-networks
+
+
+
+
