@@ -792,18 +792,18 @@ def findoscillation(ExpandedG, stablemotifs):  # return a list of oscillation ca
         # filter out single nodes
         if len(item)>1:
             newSCCs.append(list(item))
-##            print newSCCs
-##    SCCs=temp
-    # filter out non-source SCC
-    for item1 in newSCCs:
-        Flag0=0
-        for item2 in newSCCs:
-            if item2 != item1:
-                if nx.has_path(ExpandedG,list(item2)[0],list(item1)[0]):
-                    Flag0=1
-        if Flag0 ==0:
-            SCCs.append(list(item1))
-##    print SCCs
+##            print 'newSCCs',newSCCs
+    SCCs=newSCCs
+##    # filter out non-source SCC
+##    for item1 in newSCCs:
+##        Flag0=0
+##        for item2 in newSCCs:
+##            if item2 != item1:
+##                if nx.has_path(ExpandedG,list(item2)[0],list(item1)[0]):
+##                    Flag0=1
+##        if Flag0 ==0:
+##            SCCs.append(list(item1))
+##    print 'SCCs',SCCs
 
     while SCCs != []:
 ##        print
@@ -821,10 +821,12 @@ def findoscillation(ExpandedG, stablemotifs):  # return a list of oscillation ca
         compositenodelist[1] = temp
 
 ##        print 'compositenodelist:',compositenodelist
-        # find all composite nodes in obj that do not have all their input nodes in this SCC; remove these composite nodes; remove this SCC, and add sub-SCCs within this SCC
+        # find all composite nodes in obj that do not have all their input nodes in this SCC;
+        # remove these composite nodes; remove this SCC, and add sub-SCCs within this SCC
 ##        print
         Flag1=0
-        # check if the SCC satisfies (2): If so, proceed to 3; if not, remove these composite nodes; remove this SCC, and add sub-SCCs within this SCC to stack
+        # check if the SCC satisfies (2): If so, proceed to 3; if not, remove these composite nodes;
+        # remove this SCC, and add sub-SCCs within this SCC to stack
         for i in range(0,len(compositenodelist[0])):
             for input in compositenodelist[1][i]:
 ##                print 'input:',input,i,compositenodelist[1]
@@ -849,21 +851,45 @@ def findoscillation(ExpandedG, stablemotifs):  # return a list of oscillation ca
             if Flag1==1:
                 break
 
-        if Flag1==0:
         #3. check if the SCC contains at least 2 virtual nodes of every normal/orginal node: if so, proceed to 4; if not, remove the corresponding virtual nodes, then add sub-SCCs within this SCC
-            unrepeated = unrepeatednode(obj)
-##            print unrepeated
-            if unrepeated != []:
-##                print 'removing unrepeated nodes: ', unrepeated
-                for item in unrepeated:
-                    ExpandedG1.remove_node(item)
-                Flag1=1
-                newSCCs=[]
-                for item in list(nx.strongly_connected_components(ExpandedG1)):
-                    # filter out single nodes
-                    if len(item)>1:
-                        newSCCs.append(list(item))
-                SCCs += newSCCs
+##        if Flag1==0:
+##            unrepeated = unrepeatednode(obj)
+####            print unrepeated
+##            if unrepeated != []:
+####                print 'removing unrepeated nodes: ', unrepeated
+##                for item in unrepeated:
+##                    ExpandedG1.remove_node(item)
+##                Flag1=1
+##                newSCCs=[]
+##                for item in list(nx.strongly_connected_components(ExpandedG1)):
+##                    # filter out single nodes
+##                    if len(item)>1:
+##                        newSCCs.append(list(item))
+##                SCCs += newSCCs
+
+        #3. alternative: modified oscillating motif definition: self-sufficient SCC with at least one set of sibling nodes
+        # check if there exist a virtual node that has a sibling node in the SCC: if so, proceed to 4; if not, discard the candidate
+        if Flag1==0:
+            Flag1=1
+            index=0
+            nodes=[]
+            states=[]
+            while Flag1==1 and index<len(obj):
+                if obj[index].count('AND')==0:
+                    node = obj[index].split('$')[0]
+                    state = obj[index].split('$')[1]
+##                    print node, state
+                    for index2 in range (len(nodes)):
+                        if node == nodes[index2]:
+                            if state != states[index2]:
+                                Flag1=0
+                                break
+                    nodes.append(node)
+                    states.append(state)
+##                                    print 'pass'
+                                # if same node and state, do nothing
+                index+=1
+
 
         # 4 & 5. check if the SCC contains a stable motif without a composite node, if so, remove the stable motif, then go to 1; if not, the SCC is an oscillating candidate
         # suspected: incorrect in Multi-level?
@@ -889,6 +915,7 @@ def findoscillation(ExpandedG, stablemotifs):  # return a list of oscillation ca
                     Flag1=1
                     for item in sm:
                         if item in ExpandedG1:
+##                            print 'removed:', item
                             ExpandedG1.remove_node(item)
                     newSCCs=[]
                     for item in list(nx.strongly_connected_components(ExpandedG1)):
@@ -896,6 +923,7 @@ def findoscillation(ExpandedG, stablemotifs):  # return a list of oscillation ca
                         if len(item)>1:
                             newSCCs.append(list(item))
                     SCCs += newSCCs
+##                    print SCCs
 
         if Flag1==0:
             oscillations.append(obj)
@@ -914,7 +942,7 @@ def findoscillation(ExpandedG, stablemotifs):  # return a list of oscillation ca
 def findstablenodes(SM,mode=1): # from a single SM candidate or oscillating motif, find all nodes in it, with corresponding values.
     # Returns a list of two lists: 1. stablenodes; 2. values
     # if input is 'None' or '[]', i.e. no Stable Motif, return 'None'
-    # if input is an oscillation , the value for oscillating nodes will be '@'
+    # if input is an oscillation , the value for oscillating nodes will be '@'; single-value nodes in the oscillation are not treated as stable
     if SM== 'None':
         return 'None'
 ##    print len(SM)
@@ -923,6 +951,7 @@ def findstablenodes(SM,mode=1): # from a single SM candidate or oscillating moti
     stablenodes=[]
     values=[]
     Error=0
+    Flag_osc=0
 ##    count1=0
 ##    count2=0
     for i in range (0,len(SM)):
@@ -950,6 +979,7 @@ def findstablenodes(SM,mode=1): # from a single SM candidate or oscillating moti
                     if node1 == nodes[k]:
                         if state1 != states[k]:
                             # oscillation
+                            Flag_osc=1
                             a = node1
                             a += '$'
                             a += state1
@@ -963,6 +993,14 @@ def findstablenodes(SM,mode=1): # from a single SM candidate or oscillating moti
                                 y= nodes[k] + '$' + str(states[k])
                                 values[stablenodes.index(y)]='@'
 ##        print stablenodes,values
+    if Flag_osc==1:
+    # remove all stablenodes whose value is 1
+        while i <len(stablenodes):
+            if values[i]==1:
+                del values[i]
+                del stablenodes[i]
+                i-=1
+            i+=1
 
     if mode==0:
         return [nodes,states,Error]

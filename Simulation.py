@@ -383,7 +383,7 @@ def simulate (functionlist,timestep,outputmode=0,istates=[]):
 
         while (Flag1==0 and indexrange1 !=[]):
             index1 = random.choice(indexrange1)
-##            print 'index1=',index1
+##            print 'index1=',index1, 'node:', nodes[index1]
 ##            newstate = '@'
 
             # evaluate new state, by first accessing the correspondent functions
@@ -557,7 +557,7 @@ def show_atr(result):
     return attractorlist
 
 def stablenodes(attractorlist):
-# finding all stablized nodes in an attractor list (a list of sets). return a list of stavble nodes sets
+# finding all stablized nodes in an attractor list (a list of sets). return a list of stable nodes sets
 # attractors with no stable nodes are discarded
     stableset=[]
 ##    print attractorlist
@@ -604,22 +604,40 @@ def printatr(atr_SM,SMsequence):
         print str1
     return
 
+def is_osc(motif):
+    # test if a motif is an oscillation.
+    for i in range (0,len(motif)):
+##        print motif[i],motif[i].split('$')[0],motif[i].split('$')[1]
+        if 'AND' not in motif[i]:
+            for j in range (i+1,len(motif)):
+##                print 'j',motif[j],motif[j].split('$')[0],motif[i].split('$')[1]
+                if 'AND' not in motif[j]:
+                    if motif[i].split('$')[0] == motif[j].split('$')[0] and motif[i].split('$')[1] != motif[j].split('$')[1]:
+                        return True
+    return False
+
+##z=['N7$0 AND N3$1', 'N2$1', 'N2$1 AND N6$1', 'N1$1', 'N3$1', 'N7$1 AND N3$1', 'N2$0', 'N1$1 AND N2$0', 'N6$1', 'N1$0 AND N2$0', 'N6$0', 'N2$0 AND N6$0', 'N7$1', 'N2$1 AND N6$0', 'N7$0', 'N1$0']
+##print is_osc(z)
+
 def compare(atrlist_sim, atrlist_SM,Errorlist=[],ID=[],mode=0):
     # compare sampled attractors with SM attractors.
     # TBD: consistency check
     # check 1: 'consistency' for every quasi-attractor, there is a simluated partial SS that matches the stablized states of the quasi-attractor
-    # check 2: 'equivalence' (Not sure if this is enough for multi-level case)
+    # check 1 modified 1107: for sm_stabilized nodes in quasi-attracotr,... (because now single-valued nodes can be from oscillations)
+    # check 2: SS completeness: for each SS found in simulation, check it is predicted by quasi-attractor
+    # check 3: 'equivalence' (Not sure if this is enough for multi-level case)
     #   - (weak ver.) non-stablized node oscillates
     #   - (strong ver.) non-stablized node oscillates within the given range
     # mode: 1: show SM sequence; 0: default, shows only att
 
+    # 1107: re-write the SM stabilized node identification. Find all stabilized node from true stable motif. Single valued nodes in oscillations or stable motifs as a result of oscillation will not be included.
 
     atr_sim = [set(sorted(elem)) for elem in atrlist_sim]
     atr_SM = []
     SMsequence = []
     atr_SM_stablized_nodes = []
     for elem in atrlist_SM:
-##        print elem
+##        print 'element:', elem
         SM_stablized_nodes = []
         if set (sorted(elem[1])) not in atr_SM:
             atr_SM.append(set(sorted(elem[1])))
@@ -630,21 +648,32 @@ def compare(atrlist_sim, atrlist_SM,Errorlist=[],ID=[],mode=0):
 
             # finds SM-stabled nodes in elem
             if stablenodes([elem[1]]) != []: # all stablized nodes
-##                print stablenodes([elem[1]])
-                for item in stablenodes([elem[1]])[0]:
-##                    print item
-                    node1 = item.split('=')[0]
-                    for sm in elem[0]:
-##                        print sm, functions.containrep(functions.findinputs(sm))
-                        if not functions.containrep(functions.findinputs(sm)):
-                            for vnode in sm:
-                                node2 = vnode.split('$')[0]
-##                                print vnode,node2
-                                if node1 == node2 and item not in SM_stablized_nodes:
-                                    SM_stablized_nodes.append(item)
-##                                    print 'adding:',item
-                                    break
+    ##                print stablenodes([elem[1]])
+                    for item in stablenodes([elem[1]])[0]:
+    ##                    print item
+                        node1 = item.split('=')[0]
+                        for sm in elem[0]:
+                            # if the sm is an oscillation, stop the entire process; if not, find the stabilized nodes
+##                            print 'sm:',sm
+    ##                        print sm, functions.containrep(functions.findinputs(sm))
+                            if is_osc(sm):
+##                                print 'oscillation', sm
+                                break
+                            if not functions.containrep(functions.findinputs(sm)):
+                                for vnode in sm:
+                                    node2 = vnode.split('$')[0]
+    ##                                print vnode,node2
+                                    if node1 == node2 and item not in SM_stablized_nodes:
+                                        SM_stablized_nodes.append(item)
+    ##                                    print 'adding:',item
+                                        break
+
         atr_SM_stablized_nodes.append(SM_stablized_nodes)
+        print 'SM_stablized_nodes:', SM_stablized_nodes
+##
+##    print 'atr_SM:',atr_SM
+##    print 'atr_SM_stablized_nodes:',atr_SM_stablized_nodes
+##    print
 
     if atrlist_sim==[]:
         print 'SM result:'
@@ -682,11 +711,14 @@ def compare(atrlist_sim, atrlist_SM,Errorlist=[],ID=[],mode=0):
         # compare the two methods
 
         flag=0
-        A = stablenodes(atr_SM)
+##        A = stablenodes(atr_SM)
+        A = atr_SM_stablized_nodes
         B = stablenodes(atr_sim)
-    ##    print A,B
+        C = stablenodes(atr_SM)
+##        print 'A:',A
+##        print 'B:',B
+##        print 'C:',C
         # consistency check
-    ##    for stb_nodes1 in atr_SM_stablized_nodes:
         for stb_nodes1 in A:
             if stb_nodes1!=[]:
                 print 'stb_nodes1:', stb_nodes1
@@ -712,10 +744,26 @@ def compare(atrlist_sim, atrlist_SM,Errorlist=[],ID=[],mode=0):
             if b2 !=[]:
     ##            print 'SS check:', stablenodes([b1]),len(b2[0]),b1,len(b1)
                 if len(stablenodes([b1])[0]) == len (b1):
-                    if b1 not in A:
+                    if b1 not in C:
                         print 'Error!'
                         if ID != []:
                             Errorlist.append(str(ID)+':missed SS')
+                else:
+##                    print 'b1:',b1
+                # oscillation coompleteness check
+                # for each simulated oscillation, check if it is predicted by the algorithm
+                # implementation: for each simulated attractor, check if it is contained in some predicted quasi-attractor.
+                    for c1 in atr_SM:
+##                        print 'c1:',c1
+                        # if in C, break and pass; if not in C, Error.
+                        if c1.issuperset(b1):
+##                            print 'c1 contains b1'
+                            # consistent
+                            break
+                    else:
+                        print 'Error!'
+                        if ID != []:
+                            Errorlist.append(str(ID)+':missed oscillation')
 
         # equivalence check
             # Q: already contained in the consistency check?

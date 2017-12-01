@@ -92,8 +92,10 @@ def generatenetwork(N,k,mode=0,kcutoff=0,m_mode=0, m_dist=3):
     if m_mode==1:
         # TBD: generate distribution
         for node in nodes:
-##            max1 = 2
-            max1 = numpy.random.choice(numpy.arange(2, 4), p=[0.5, 0.5])
+            max1 = 2
+##            max1 = 3
+##            max1 = numpy.random.choice(numpy.arange(2, 4), p=[0.5, 0.5])
+##            max1 = numpy.random.choice(numpy.arange(3, 5), p=[0.9, 0.1])
 ##            max1 = numpy.random.choice(numpy.arange(2, 5), p=[0.34, 0.33,0.33])
 ##            max1 = numpy.random.choice(numpy.arange(2, 6), p=[0.6, 0.25,0.1,0.05])
 ##            max1 = numpy.random.choice(numpy.arange(2, 7), p=[0.55, 0.25, 0.1, 0.05, 0.05])
