@@ -135,12 +135,12 @@ def MultiQM_test(N,k=3,m=4,modex =2,kcutoff=7,samplesize=1,tcut=0.1): # Obsolete
 
 def benchmark ():
     ##def randomSM_test(N,k=3,m=4,modex =2,samplesize=1,tcut=0.05):
-    N=20
+    N=30
     k=2
     m=3
     modex =2
     kcutoff=5
-    samplesize=50
+    samplesize=100
     tcut=0.05
 
     t1 = time.time()
@@ -189,17 +189,17 @@ def benchmark ():
         result_SM.append(t4)
         totaltime1+=t4
 
-##        u = Simulation.simulate_attractor(z1,samplesize=100,Tsteps=30,Ttrans=500,Tsearch=1000,istates=[])
+##        u = Simulation.simulate_attractor(z1,samplesize=120,Tsteps=50,Ttrans=500,Tsearch=1000,istates=[])
 ##        w = Simulation.show_atr(u)
-##        w = []
+        w = []
 
-##        t5 = (time.time() - t4 - t3)
-##        print '""""  simulation complete  """"',("--- %s seconds ---" % (t5))
-##
-##        v = Simulation.compare(w,x,Errorlist,i)
-##        print '""""  total time  """"',("--- %s seconds ---" % (t5+t4))
-##        result_sim.append(t5)
-##        totaltime2+=t5
+        t5 = (time.time() - t4 - t3)
+        print '""""  simulation complete  """"',("--- %s seconds ---" % (t5))
+
+        v = Simulation.compare(w,x,Errorlist,i)
+        print '""""  total time  """"',("--- %s seconds ---" % (t5+t4))
+        result_sim.append(t5)
+        totaltime2+=t5
 
         print 'avg SM time:',totaltime1/(i+1)
         print 'avg simulation time:',totaltime2/(i+1)
